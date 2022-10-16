@@ -1,0 +1,37 @@
+// SPDX-License-Identifier: MIT
+pragma solidity >= 0.5.0 < 0.9.0;
+     // function modifier are used to modify the behavior of a function
+     // function modifier are customizable modification for function
+contract Owner {
+    
+     //function modifier
+     address owner;
+     //when we deploy this contract we want to see the address to the owner(msg.sender)
+     constructor() {
+         owner = msg.sender;
+     }
+
+     modifier OnlyOwner{
+         require(msg.sender == owner);
+         _; // underscore will say that  continue to the code if the require condition is true
+         // require() is a keyword actually going tobe checking true statement ,it also allow us to create a condition and
+         // check the value of that code
+     }
+
+}
+
+contract Register is Owner{
+        mapping(address => bool) registeredaddress;
+        uint price;
+        constructor(uint initialprice) {
+                price = initialprice;
+        }
+        // function register will set msg.sender(current caller) to true
+        function register() public payable{
+            registeredaddress[msg.sender] = true;
+        }
+
+        function changeprice(uint _price) public OnlyOwner {
+            price = _price;
+        }
+}

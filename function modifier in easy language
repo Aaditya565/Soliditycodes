@@ -1,0 +1,35 @@
+// SPDX-License-Identifier: MIT
+pragma solidity >= 0.5.0 < 0.9.0;
+contract Modifier{
+    
+    // function modifier
+    modifier samecode(){
+         for(uint i = 0; i < 10; i++){
+            //code
+        }
+        _; // the work of this is that when the underscore semicolon meets in the modifiers  at that time ,modifier added
+        // in the function signature, it will run the code in the function.
+    }
+    function fun1() public pure samecode returns(string memory){
+      /*  for(uint i = 0; i < 10; i++){
+            //code
+        } */
+        return "fun1 say hii";
+    }
+
+    function fun2() public pure samecode returns(uint _x){
+       /* for(uint i = 0; i < 10; i++){
+            //code
+        } */
+        _x = 10;
+    }
+
+    
+    function fun3() public view samecode returns(address){
+       /* for(uint i = 0; i < 10; i++){
+            //code
+        } */
+       return msg.sender;
+    }
+
+}

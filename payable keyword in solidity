@@ -1,0 +1,21 @@
+// SPDX-License-Identifier: MIT
+pragma solidity >= 0.5.0 < 0.9.0;
+
+// payable is a keyword in solidity which is used to make function,constructor and address payable means function 
+// ,address or contract can share or accept ethers .
+contract Payable{
+    address payable public owner = payable (msg.sender);
+    //we have make explicitly msg.sender and address payable otherwise
+    // otherwise compiler will give error.
+    constructor() payable{
+
+    }
+    function getETH() public payable{
+
+    }
+    function checkbalance() public view returns(uint){
+        return address(this).balance;
+        // address(this).balance will show the total amount of this contract
+    }
+
+} 
